@@ -131,7 +131,7 @@
     background-color: #256489;
     border-radius: 5px;
   }
-  
+
   .scrollbar {
     max-height: 400px;
     overflow-y: auto;
@@ -150,3 +150,5 @@
   .scrollbar::-webkit-scrollbar-track {
     background: #f1f1f1;
   }
+
+  
