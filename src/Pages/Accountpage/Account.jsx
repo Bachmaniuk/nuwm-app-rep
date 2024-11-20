@@ -47,7 +47,7 @@ const AccountPage = () => {
           <UserCard user={user} />
           <StudentList students={students} />
           <PointCard grades={grades} />
-          {/* <Teachersetpage />  сторінка виставляння оцінок*/}
+          {/* <Teachersetpage />   */}
         </div>
       </main>
       <Footer />
