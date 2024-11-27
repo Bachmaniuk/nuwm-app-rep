@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './Teacherpage.css';
 
 const groups = [
@@ -33,6 +35,7 @@ const TeacherPage = () => {
   const [subject, setSubject] = useState('');
   const [classroom, setClassroom] = useState('');
   const [teacherName, setTeacherName] = useState('');
+  const [date, setDate] = useState(null);
   const [logs, setLogs] = useState([]);
 
   const handleSubmit = (e) => {
@@ -46,6 +49,7 @@ const TeacherPage = () => {
       subject: subject || 'Не вказано',
       classroom: classroom || 'Не вказано',
       teacherName: teacherName || 'Не вказано',
+      date: date ? date.toLocaleDateString() : 'Не вказано',
       timestamp: new Date().toLocaleString(),
     };
 
@@ -58,9 +62,9 @@ const TeacherPage = () => {
     setSubject('');
     setClassroom('');
     setTeacherName('');
+    setDate(null);
   };
 
-  // Функція для видалення останнього лога
   const deleteLastLog = () => {
     setLogs((prevLogs) => prevLogs.slice(0, prevLogs.length - 1));
   };
@@ -131,11 +135,20 @@ const TeacherPage = () => {
             placeholder="Введіть ініціали викладача"
           />
         </div>
-        <button type="submit">Призначити пару</button>
+        <div className="form-group">
+          <label>Дата проведення</label>
+          <DatePicker
+            selected={date}
+            onChange={(selectedDate) => setDate(selectedDate)}
+            dateFormat="dd/MM/yyyy"
+            placeholderText="Оберіть дату"
+          />
+        </div>
+        <button type="submit" className="submit-button">Призначити пару</button>
       </form>
 
       <div className="logs">
-        <h2>Пар не призначено:</h2>
+        <h2>Призначені пари:</h2>
         {logs.length === 0 ? (
           <p>Призначити пару.</p>
         ) : (
@@ -143,7 +156,7 @@ const TeacherPage = () => {
             {logs.map((log, index) => (
               <li key={index}>
                 <strong>{log.timestamp}</strong> - Група: {log.group}, Підгрупа: {log.subgroup}, 
-                Пара: {log.pairNumber}, Тип: {log.type}, Предмет: {log.subject}, Кабінет: {log.classroom}, Викладач: {log.teacherName}
+                Пара: {log.pairNumber}, Тип: {log.type}, Предмет: {log.subject}, Кабінет: {log.classroom}, Викладач: {log.teacherName}, Дата: {log.date}
               </li>
             ))}
           </ul>
