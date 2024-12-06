@@ -14,13 +14,5 @@ body {
     padding: 0 30px;
 }
 
-/* Адаптивність для екранів до 1200px */
-@media (max-width: 1200px) {
-    .container {
-        padding: 0 20px;
-    }
-}
 
 
-
-/* Адаптивність для екранів до 992px */
